@@ -1,11 +1,36 @@
-import React from 'react'
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import { Toaster } from "react-hot-toast";   // ✅ make sure this is imported
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import HomePage from "./pages/home/HomePage";
+
+const Layout = ({ children }) => {
+  const location = useLocation();
+  const showLayout = ["/", "/signup", "/services"].includes(location.pathname);
+
+  return (
+    <>
+      {showLayout && <Navbar />}
+      {children}
+      {showLayout && <Footer />}
+    </>
+  );
+};
 
 const App = () => {
   return (
-    <div>
-      <h1 className='text-center'>Welcome to Alternme</h1>
-    </div>
-  )
-}
+    <Router>
+      <Toaster position="top-right" reverseOrder={false} />
+      <Layout>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          {/* Add more routes here */}
+          {/* <Route path="/signup" element={<Signup />} /> */}
+          {/* <Route path="/services" element={<Services />} /> */}
+        </Routes>
+      </Layout>
+    </Router>
+  );
+};
 
-export default App
+export default App;
