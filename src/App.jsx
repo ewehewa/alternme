@@ -3,6 +3,8 @@ import { Toaster } from "react-hot-toast";   // ✅ make sure this is imported
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import HomePage from "./pages/home/HomePage";
+import Pricing from "./pages/home/Pricing";
+
 
 const Layout = ({ children }) => {
   const location = useLocation();
@@ -24,6 +26,7 @@ const App = () => {
       <Layout>
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/pricing" element={<Pricing />} />
           {/* Add more routes here */}
           {/* <Route path="/signup" element={<Signup />} /> */}
           {/* <Route path="/services" element={<Services />} /> */}
