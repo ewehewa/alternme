@@ -4,11 +4,15 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import HomePage from "./pages/home/HomePage";
 import Pricing from "./pages/home/Pricing";
+import Contact from "./pages/home/Contact";
+import LoginSection from "./pages/home/LoginSection";
+import SignUpPage from './pages/home/SignUpPage';
+
 
 
 const Layout = ({ children }) => {
   const location = useLocation();
-  const showLayout = ["/", "/signup", "/services"].includes(location.pathname);
+  const showLayout = ["/", "/signup", "/services", "/pricing", "/contact", "/login" ].includes(location.pathname);
 
   return (
     <>
@@ -27,8 +31,10 @@ const App = () => {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/pricing" element={<Pricing />} />
+           <Route path="/contact" element={<Contact />} />
           {/* Add more routes here */}
-          {/* <Route path="/signup" element={<Signup />} /> */}
+          <Route path="/signup" element={<SignUpPage />} />
+          <Route path="/login" element={<LoginSection/>} />
           {/* <Route path="/services" element={<Services />} /> */}
         </Routes>
       </Layout>
