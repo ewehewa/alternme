@@ -1,8 +1,11 @@
 import React from "react"
 import { Crown } from "lucide-react" // Replacing <i class="fas fa-crown">
+import PricingPlan from "../sections/PricingPlan"
+import FeaturesComparison from "../sections/FeaturesComparison"
 
 const Pricing = () => {
   return (
+    <>
     <section
       id="home"
       className="relative min-h-[60vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50 to-slate-100 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900"
@@ -30,12 +33,19 @@ const Pricing = () => {
 
           <p className="text-base sm:text-lg md:text-xl text-slate-600 dark:text-slate-400 mb-6 sm:mb-8 max-w-2xl mx-auto">
             Flexible pricing designed to scale with your needs. No hidden fees,
-            no surprises — just powerful crypto wallet tools.
+            no surprises just powerful crypto wallet tools.
           </p>
         </div>
       </div>
+      
     </section>
+    <PricingPlan/>
+    <FeaturesComparison/>
+    </>
+    
   )
+  
+  
 }
 
 export default Pricing
