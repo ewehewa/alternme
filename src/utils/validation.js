@@ -26,15 +26,6 @@ export const signupSchema = yup.object().shape({
     .required('Email is required')
     .email('Email must be a valid email'),
 
-  firstname: yup
-    .string()
-    .required('First name is required')
-    .min(2, 'First name must be at least 2 characters'),
-
-  lastname: yup
-    .string()
-    .required('Last name is required')
-    .min(2, 'Last name must be at least 2 characters'),
 
   password: yup
     .string()

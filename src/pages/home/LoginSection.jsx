@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-import { Eye, EyeOff, Mail, Lock, ShieldCheck } from "lucide-react";
+import { Eye, EyeOff, User, Lock, ShieldCheck } from "lucide-react";
 import axios from "axios";
 import { loginSchema } from "../../utils/validation";
 
 const LoginSection = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const [email, setEmail] = useState("");
+  const [login, setLogin] = useState(""); // renamed from email
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -18,11 +18,11 @@ const LoginSection = () => {
     e.preventDefault();
 
     try {
-      await loginSchema.validate({ email, password }, { abortEarly: false });
+      await loginSchema.validate({ login, password }, { abortEarly: false });
       setIsLoading(true);
 
       const response = await axios.post(`${APP_URL}/login`, {
-        email: email.trim(),
+        login: login.trim(), // matches Laravel request field
         password,
       });
 
@@ -52,41 +52,28 @@ const LoginSection = () => {
 
   return (
     <main className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 via-blue-50 to-slate-100 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 py-12 relative">
-      {/* Background circles */}
       <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-300 dark:bg-blue-900/30 rounded-full blur-3xl opacity-70"></div>
       <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-blue-200 dark:bg-blue-800/20 rounded-full blur-3xl opacity-50"></div>
-      <div className="absolute top-1/3 right-1/4 w-32 h-32 bg-blue-400 dark:bg-blue-800/30 rounded-full blur-2xl opacity-30 animate-float"></div>
 
-      {/* Grid background */}
-      <div
-        className="absolute inset-0"
-        style={{
-          backgroundImage:
-            "radial-gradient(circle at 2px 2px, rgba(0,80,200,0.08) 1px, transparent 0)",
-          backgroundSize: "40px 40px",
-        }}
-      ></div>
-
-      {/* Card container */}
       <div className="relative z-10 w-full max-w-md mx-auto bg-white/80 dark:bg-slate-900/70 backdrop-blur-md border border-slate-200 dark:border-slate-700 rounded-3xl shadow-2xl p-8 sm:p-10">
         <h1 className="text-3xl font-bold text-blue-900 dark:text-blue-200 mb-8 text-center">
           Welcome Back
         </h1>
 
         <form onSubmit={loginUser} className="space-y-6">
-          {/* Email */}
+          {/* Username or Email */}
           <div className="relative">
             <label className="absolute -top-3 left-4 text-sm text-gray-500 dark:text-gray-400 bg-white dark:bg-slate-900 px-1">
-              Email
+              Email or Username
             </label>
             <div className="flex items-center bg-gray-100 dark:bg-slate-800 rounded-full px-4 py-3 shadow-sm">
-              <Mail className="w-5 h-5 text-blue-900 dark:text-blue-400 mr-3" />
+              <User className="w-5 h-5 text-blue-900 dark:text-blue-400 mr-3" />
               <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                type="text"
+                value={login}
+                onChange={(e) => setLogin(e.target.value)}
                 className="flex-1 bg-transparent outline-none text-gray-700 dark:text-gray-200 placeholder-gray-500"
-                placeholder="Enter your email"
+                placeholder="Enter your email or username"
                 disabled={isLoading}
               />
             </div>
@@ -166,7 +153,6 @@ const LoginSection = () => {
           </Link>
         </p>
 
-        {/* Security badge */}
         <div className="text-center mt-8">
           <div className="inline-flex items-center px-4 py-2 bg-slate-100 dark:bg-slate-800 rounded-full text-sm text-slate-600 dark:text-slate-400">
             <ShieldCheck className="text-blue-500 mr-2" size={16} />

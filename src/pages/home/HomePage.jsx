@@ -1,6 +1,7 @@
 "use client"
 
 import { Shield, CheckCircle, Settings,  ArrowRight, Zap } from "lucide-react"
+import { Link } from "react-router-dom";
 import LiveActivity from "../sections/Liveactivity"
 import { Features } from "tailwindcss"
 import FeaturesSection from "../sections/Features"
@@ -37,14 +38,21 @@ function Home() {
                 </p>
 
                 <div className="mt-10 flex flex-col sm:flex-row gap-4">
-                  <button className="flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl text-lg font-semibold shadow-lg transition-all hover:scale-105">
-                    Get Started
-                    <ArrowRight className="ml-2 w-5 h-5" />
-                  </button>
-                  <button className="flex items-center justify-center px-8 py-4 rounded-xl border border-blue-200 text-blue-600 hover:bg-blue-50 text-lg font-semibold shadow-sm transition-all">
-                    <Shield className="mr-2 w-5 h-5" />
-                    Login
-                  </button>
+                 <Link
+        to="/signup"
+        className="flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl text-lg font-semibold shadow-lg transition-all hover:scale-105"
+      >
+        Get Started
+        <ArrowRight className="ml-2 w-5 h-5" />
+      </Link>
+
+      <Link
+        to="/login"
+        className="flex items-center justify-center px-8 py-4 rounded-xl border border-blue-200 text-blue-600 hover:bg-blue-50 text-lg font-semibold shadow-sm transition-all"
+      >
+        <Shield className="mr-2 w-5 h-5" />
+        Login
+      </Link>
                 </div>
               </div>
 

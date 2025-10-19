@@ -7,6 +7,8 @@ import Pricing from "./pages/home/Pricing";
 import Contact from "./pages/home/Contact";
 import LoginSection from "./pages/home/LoginSection";
 import SignUpPage from './pages/home/SignUpPage';
+import DashboardLayout from "../src/pages/dashboard/DashboardLayout";
+import ProtectedRoute from "./routes/ProtectedRoute";
 
 
 
@@ -36,6 +38,14 @@ const App = () => {
           <Route path="/signup" element={<SignUpPage />} />
           <Route path="/login" element={<LoginSection/>} />
           {/* <Route path="/services" element={<Services />} /> */}
+
+           <Route path="/dashboard" element={
+              <ProtectedRoute>
+                <DashboardLayout />
+              </ProtectedRoute>
+            }
+          ></Route>
+          
         </Routes>
       </Layout>
     </Router>

@@ -11,8 +11,6 @@ const SignUpPage = () => {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
-  const [firstname, setFirstname] = useState("");
-  const [lastname, setLastname] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -27,8 +25,7 @@ const SignUpPage = () => {
       await signupSchema.validate({ 
         username, 
         email, 
-        firstname, 
-        lastname, 
+
         password, 
         confirmPassword 
       }, { abortEarly: false });
@@ -39,8 +36,6 @@ const SignUpPage = () => {
       const response = await axios.post(`${APP_URL}/register`, {
         username: username.trim(),
         email: email.trim(),
-        first_name: firstname.trim(),
-        last_name: lastname.trim(),
         password,
         password_confirmation: confirmPassword // Laravel expects this naming
       });
